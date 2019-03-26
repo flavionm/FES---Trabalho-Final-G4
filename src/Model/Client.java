@@ -11,71 +11,70 @@ package Model;
  */
 public class Client {
 
-    private String nome;
-    private String email;
-    private String senha;
-    private String cpf;
-    private String celular;
-    private Address endereco;
+	private String nome;
+	private String email;
+	private String senha;
+	private String cpf;
+	private String celular;
+	private Address endereco;
 
-    public String getNome() {
-        return nome;
-    }
+	public String getNome() {
+		return nome;
+	}
 
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
 
-    public String getEmail() {
-        return email;
-    }
+	public String getEmail() {
+		return email;
+	}
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
+	public void setEmail(String email) {
+		this.email = email;
+	}
 
-    public String getSenha() {
-        return senha;
-    }
+	public String getSenha() {
+		return senha;
+	}
 
-    public void setSenha(String senha) {
-        this.senha = senha;
-    }
+	public void setSenha(String senha) {
+		this.senha = senha;
+	}
 
-    public String getCpf() {
-        return cpf;
-    }
+	public String getCpf() {
+		return cpf;
+	}
 
-    public void setCpf(String cpf) {
-        this.cpf = cpf;
-    }
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
+	}
 
-    public String getCelular() {
-        return celular;
-    }
+	public String getCelular() {
+		return celular;
+	}
 
-    public void setCelular(String celular) {
-        this.celular = celular;
-    }
+	public void setCelular(String celular) {
+		this.celular = celular;
+	}
 
-    public Address getEndereço() {
-        return endereco;
-    }
+	public Address getEndereço() {
+		return endereco;
+	}
 
-    public void setEndereço(Address endereço) {
-        this.endereco = endereço;
-    }
+	public void setEndereço(Address endereço) {
+		this.endereco = endereço;
+	}
 
-    public boolean saveToDatabase() {
-        return true;
-    }
-    
-    public static Client getFromDatabase(String email, String senha) {
-        return new Client();
-    }
-    
-    public static boolean isOnDatabase(String email, String senha) {
-        return true;
-    }
+	public boolean saveToDatabase() {
+		return true;
+	}
 
+	public static Client getFromDatabase(String email, String senha) {
+		return new Client();
+	}
+
+	public static boolean isOnDatabase(String email, String senha) {
+		return true;
+	}
 }

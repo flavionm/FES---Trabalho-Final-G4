@@ -11,38 +11,37 @@ package Model;
  */
 public class Address {
 
-    private final String rua;
-    private final int num;
-    private final String bairro;
-    private final String cidade;
-    private final String estado;
+	private final String rua;
+	private final String num;
+	private final String bairro;
+	private final String cidade;
+	private final String estado;
 
-    public Address(String rua, int num, String bairro, String cidade, String estado) {
-        this.rua = rua;
-        this.num = num;
-        this.bairro = bairro;
-        this.cidade = cidade;
-        this.estado = estado;
-    }
+	public Address(String rua, String num, String bairro, String cidade, String estado) {
+		this.rua = rua;
+		this.num = num;
+		this.bairro = bairro;
+		this.cidade = cidade;
+		this.estado = estado;
+	}
 
-    public String getRua() {
-        return rua;
-    }
+	public String getRua() {
+		return rua;
+	}
 
-    public int getNum() {
-        return num;
-    }
+	public String getNum() {
+		return num;
+	}
 
-    public String getBairro() {
-        return bairro;
-    }
+	public String getBairro() {
+		return bairro;
+	}
 
-    public String getCidade() {
-        return cidade;
-    }
+	public String getCidade() {
+		return cidade;
+	}
 
-    public String getEstado() {
-        return estado;
-    }
-
+	public String getEstado() {
+		return estado;
+	}
 }
