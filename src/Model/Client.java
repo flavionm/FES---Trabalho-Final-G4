@@ -69,5 +69,13 @@ public class Client {
     public boolean saveToDatabase() {
         return true;
     }
+    
+    public static Client getFromDatabase(String email, String senha) {
+        return new Client();
+    }
+    
+    public static boolean isOnDatabase(String email, String senha) {
+        return true;
+    }
 
 }
