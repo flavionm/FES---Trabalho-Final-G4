@@ -15,22 +15,22 @@ import java.util.ArrayList;
  */
 public class ClientController {
 
-	public static boolean login(String email, String senha) {
-		return Client.isOnDatabase(email, senha);
+	public static boolean login(String email, String password) {
+		return Client.isOnDatabase(email, password);
 	}
 
-	public static boolean register(ArrayList<String> dados) {
+	public static boolean register(ArrayList<String> clientData) {
 		Client c = new Client();
 
-		c.setNome(dados.get(0));
-		c.setEmail(dados.get(1));
-		c.setSenha(dados.get(2));
-		c.setCpf(dados.get(3));
-		c.setCelular(dados.get(4));
-		c.setCnh(dados.get(5));
-		Address e = new Address(dados.get(6), dados.get(7), dados.get(8),
-				dados.get(9), dados.get(10));
-		c.setEndereco(e);
+		c.setName(clientData.get(0));
+		c.setEmail(clientData.get(1));
+		c.setPassword(clientData.get(2));
+		c.setCpf(clientData.get(3));
+		c.setPhone(clientData.get(4));
+		c.setCnh(clientData.get(5));
+		Address e = new Address(clientData.get(6), clientData.get(7), clientData.get(8),
+				clientData.get(9), clientData.get(10));
+		c.setAddress(e);
 
 		return c.saveToDatabase();
 	}

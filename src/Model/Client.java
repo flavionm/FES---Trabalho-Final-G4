@@ -11,13 +11,13 @@ package Model;
  */
 public class Client {
 
-	private String nome;
+	private String name;
 	private String email;
-	private String senha;
+	private String password;
 	private String cpf;
-	private String celular;
+	private String phone;
 	private String cnh;
-	private Address endereco;
+	private Address address;
 
 	public String getCnh() {
 		return cnh;
@@ -27,12 +27,12 @@ public class Client {
 		this.cnh = cnh;
 	}
 
-	public String getNome() {
-		return nome;
+	public String getName() {
+		return name;
 	}
 
-	public void setNome(String nome) {
-		this.nome = nome;
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public String getEmail() {
@@ -43,12 +43,12 @@ public class Client {
 		this.email = email;
 	}
 
-	public String getSenha() {
-		return senha;
+	public String getPassword() {
+		return password;
 	}
 
-	public void setSenha(String senha) {
-		this.senha = senha;
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 	public String getCpf() {
@@ -59,31 +59,31 @@ public class Client {
 		this.cpf = cpf;
 	}
 
-	public String getCelular() {
-		return celular;
+	public String getPhone() {
+		return phone;
 	}
 
-	public void setCelular(String celular) {
-		this.celular = celular;
+	public void setPhone(String phone) {
+		this.phone = phone;
 	}
 
-	public Address getEndereco() {
-		return endereco;
+	public Address getAddress() {
+		return address;
 	}
 
-	public void setEndereco(Address endereco) {
-		this.endereco = endereco;
+	public void setAddress(Address address) {
+		this.address = address;
 	}
 
 	public boolean saveToDatabase() {
 		return true;
 	}
 
-	public static Client getFromDatabase(String email, String senha) {
+	public static Client getFromDatabase(String email, String password) {
 		return new Client();
 	}
 
-	public static boolean isOnDatabase(String email, String senha) {
+	public static boolean isOnDatabase(String email, String password) {
 		return true;
 	}
 }
