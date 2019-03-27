@@ -16,7 +16,16 @@ public class Client {
 	private String senha;
 	private String cpf;
 	private String celular;
+	private String cnh;
 	private Address endereco;
+
+	public String getCnh() {
+		return cnh;
+	}
+
+	public void setCnh(String cnh) {
+		this.cnh = cnh;
+	}
 
 	public String getNome() {
 		return nome;
@@ -58,12 +67,12 @@ public class Client {
 		this.celular = celular;
 	}
 
-	public Address getEndereço() {
+	public Address getEndereco() {
 		return endereco;
 	}
 
-	public void setEndereço(Address endereço) {
-		this.endereco = endereço;
+	public void setEndereco(Address endereco) {
+		this.endereco = endereco;
 	}
 
 	public boolean saveToDatabase() {

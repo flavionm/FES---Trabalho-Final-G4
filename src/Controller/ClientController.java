@@ -27,8 +27,10 @@ public class ClientController {
 		c.setSenha(dados.get(2));
 		c.setCpf(dados.get(3));
 		c.setCelular(dados.get(4));
-		Address e = new Address(dados.get(5), dados.get(6), dados.get(7), dados.get(8), dados.get(9));
-		c.setEndereço(e);
+		c.setCnh(dados.get(5));
+		Address e = new Address(dados.get(6), dados.get(7), dados.get(8),
+				dados.get(9), dados.get(10));
+		c.setEndereco(e);
 
 		return c.saveToDatabase();
 	}
