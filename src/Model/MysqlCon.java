@@ -1,3 +1,5 @@
+package Model;
+
 import java.sql.*;
 class MysqlCon {
 	public static void main(String args[]){  
@@ -9,7 +11,7 @@ class MysqlCon {
 		ResultSet rs=stmt.executeQuery("select * from usuarios");  
 		while(rs.next())  
 //		System.out.println(rs.getInt(1)+"  "+rs.getString(2)+"  "+rs.getString(3));
-//		linha acima pega informações da tabela e printa
+//		linha acima pega informaï¿½ï¿½es da tabela e printa
 		con.close();  
 		}catch(Exception e){ System.out.println(e);}  
 	}  

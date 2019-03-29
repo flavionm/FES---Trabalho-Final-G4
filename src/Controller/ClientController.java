@@ -15,8 +15,8 @@ import java.util.ArrayList;
  */
 public class ClientController {
 
-	public static boolean login(String email, String password) {
-		return Client.isOnDatabase(email, password);
+	public static boolean login(String email) {
+		return Client.isOnDatabase(email);
 	}
 
 	public static boolean register(ArrayList<String> clientData) {
@@ -24,12 +24,11 @@ public class ClientController {
 
 		c.setName(clientData.get(0));
 		c.setEmail(clientData.get(1));
-		c.setPassword(clientData.get(2));
-		c.setCpf(clientData.get(3));
-		c.setPhone(clientData.get(4));
-		c.setCnh(clientData.get(5));
-		Address e = new Address(clientData.get(6), clientData.get(7), clientData.get(8),
-				clientData.get(9), clientData.get(10));
+		c.setCpf(clientData.get(2));
+		c.setPhone(clientData.get(3));
+		c.setCnh(clientData.get(4));
+		Address e = new Address(clientData.get(5), clientData.get(6), clientData.get(7),
+				clientData.get(8), clientData.get(9));
 		c.setAddress(e);
 
 		return c.saveToDatabase();

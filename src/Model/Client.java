@@ -13,7 +13,6 @@ public class Client {
 
 	private String name;
 	private String email;
-	private String password;
 	private String cpf;
 	private String phone;
 	private String cnh;
@@ -41,14 +40,6 @@ public class Client {
 
 	public void setEmail(String email) {
 		this.email = email;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
 	}
 
 	public String getCpf() {
@@ -79,11 +70,11 @@ public class Client {
 		return true;
 	}
 
-	public static Client getFromDatabase(String email, String password) {
+	public static Client getFromDatabase(String email) {
 		return new Client();
 	}
 
-	public static boolean isOnDatabase(String email, String password) {
+	public static boolean isOnDatabase(String email) {
 		return true;
 	}
 }
