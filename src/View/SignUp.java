@@ -15,6 +15,7 @@ import javax.swing.JTextField;
 import javax.swing.JCheckBox;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JPasswordField;
 
 public class SignUp extends JFrame {
 
@@ -22,8 +23,10 @@ public class SignUp extends JFrame {
 	private JTextField username;
 	private JTextField password;
 	public EmployeeController controller = new EmployeeController();
+	private JPasswordField passwordField;
 
 	public SignUp() {
+		setTitle("Cadastro de funcionário");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -36,7 +39,8 @@ public class SignUp extends JFrame {
 		contentPane.add(username);
 		username.setColumns(10);
 		
-		password = new JTextField();
+
+		password = new JPasswordField();
 		password.setBounds(125, 100, 200, 25);
 		contentPane.add(password);
 		password.setColumns(10);
@@ -56,6 +60,7 @@ public class SignUp extends JFrame {
 		JButton createEmployee = new JButton("Criar");
 		createEmployee.setBounds(175, 175, 100, 25);
 		contentPane.add(createEmployee);
+		
 		createEmployee.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {

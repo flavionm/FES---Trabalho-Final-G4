@@ -34,17 +34,17 @@ public class EmployeeController {
 		}
 	}
 	
-	public Boolean login(Employee employee) {
+	public Employee login(Employee employee) {
 		String sql = "SELECT * FROM employee WHERE username = ? AND password = ?";
-		Boolean auth = false;
+		Employee auth = new Employee();
 		try {
 			stmt = conn.prepareStatement(sql);
 			stmt.setString(1, employee.getUsername());
 			stmt.setString(2, employee.getPassword());
 			rs = stmt.executeQuery();
-			while (rs.next()) {
-				auth = true;
-			}
+			rs.next();
+			auth.setUsername(rs.getString("username"));
+			auth.setType(rs.getInt("type"));
 			stmt.close();
 		}catch(Exception e) {
 			throw new RuntimeException("Erro no read de employee:" + e);

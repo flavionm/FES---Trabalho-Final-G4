@@ -15,6 +15,7 @@ import javax.swing.JButton;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
+import javax.swing.JPasswordField;
 import java.awt.Color;
 
 public class Login extends JFrame {
@@ -51,7 +52,7 @@ public class Login extends JFrame {
 		contentPane.add(lblNome);
 		
 		//Textfield da senha
-		password = new JTextField();
+		password = new JPasswordField();
 		password.setBounds(125, 100, 200, 25);
 		contentPane.add(password);
 		password.setColumns(10);
@@ -70,11 +71,21 @@ public class Login extends JFrame {
 				Employee employee = new Employee();
 				employee.setUsername(username.getText());
 				employee.setPassword(password.getText());
-				Boolean login = controller.login(employee);
-				if (login) {
-					System.out.println("Logou ae carai");
+				Employee login = controller.login(employee);
+				if (login.getUsername().length()> 0) {
+					System.out.println("Logou.");
+					EventQueue.invokeLater(new Runnable() {
+						public void run() {
+							try {
+								Dashboard frame = new Dashboard(login);
+								frame.setVisible(true);
+							} catch (Exception e) {
+								e.printStackTrace();
+							}
+						}
+					});
 				}else {
-					System.out.println("Ta errado esse login ai mano");
+					System.out.println("Erro no login");
 				}
 			}
 		});
