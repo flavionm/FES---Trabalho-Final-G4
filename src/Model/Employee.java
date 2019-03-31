@@ -11,15 +11,29 @@ package Model;
  */
 public class Employee {
 
+	private int id; //Primary key
 	private String username;
 	private String password;
+	private int type;
 
+	public int getId() {
+		return this.id;
+	}
+	
 	public String getUsername() {
 		return username;
 	}
 
 	public void setUsername(String username) {
 		this.username = username;
+	}
+
+	public int getType() {
+		return type;
+	}
+
+	public void setType(int type) {
+		this.type = type;
 	}
 
 	public String getPassword() {

@@ -16,7 +16,7 @@ public class Client {
 	private String cpf;
 	private String phone;
 	private String cnh;
-	private Address address;
+	private Integer address;
 
 	public String getCnh() {
 		return cnh;
@@ -58,11 +58,11 @@ public class Client {
 		this.phone = phone;
 	}
 
-	public Address getAddress() {
+	public int getAddress() {
 		return address;
 	}
 
-	public void setAddress(Address address) {
+	public void setAddress(Integer address) {
 		this.address = address;
 	}
 
