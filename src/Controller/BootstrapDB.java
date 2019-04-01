@@ -29,7 +29,9 @@ public class BootstrapDB {
 				+ "cpf varchar(11) NOT NULL UNIQUE,"
 				+ "phone varchar(100) NOT NULL UNIQUE,"
 				+ "cnh varchar(100) UNIQUE,"
-				+ "address int(10),"
+				+ "address varchar(100),"
+				+ "city varchar(100),"
+				+ "state varchar(100),"
 				+ "PRIMARY KEY(id)"
 				+ ");";
 		try {

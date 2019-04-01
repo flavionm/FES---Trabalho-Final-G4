@@ -16,7 +16,25 @@ public class Client {
 	private String cpf;
 	private String phone;
 	private String cnh;
-	private Integer address;
+	private String address;
+	private String city;
+
+	public String getCity() {
+		return city;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
+	}
+
+	public String getState() {
+		return state;
+	}
+
+	public void setState(String state) {
+		this.state = state;
+	}
+	private String state;
 
 	public String getCnh() {
 		return cnh;
@@ -58,11 +76,11 @@ public class Client {
 		this.phone = phone;
 	}
 
-	public int getAddress() {
+	public String getAddress() {
 		return address;
 	}
 
-	public void setAddress(Integer address) {
+	public void setAddress(String address) {
 		this.address = address;
 	}
 

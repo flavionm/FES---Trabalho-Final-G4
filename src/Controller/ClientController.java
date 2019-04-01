@@ -15,7 +15,7 @@ public class ClientController {
 	}
 	
 	public void insert(Client client) {
-		String sql = "INSERT INTO client (name, email, cpf, phone, cnh, address) VALUES (?, ?, ?, ?, ?, ?);";
+		String sql = "INSERT INTO client (name, email, cpf, phone, cnh, address, city, state) VALUES (?, ?, ?, ?, ?, ?, ?, ?);";
 		try {
 			stmt = conn.prepareStatement(sql);
 			stmt.setString(1, client.getName());
@@ -23,7 +23,9 @@ public class ClientController {
 			stmt.setString(3, client.getCpf());
 			stmt.setString(4, client.getPhone());
 			stmt.setString(5, client.getCnh());
-			stmt.setInt(6, client.getAddress());
+			stmt.setString(6, client.getAddress());
+			stmt.setString(7, client.getCity());
+			stmt.setString(8, client.getState());
 			stmt.execute();
 			stmt.close();
 		}catch(Exception e) {

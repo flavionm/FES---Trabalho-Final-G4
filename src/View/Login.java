@@ -33,14 +33,14 @@ public class Login extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
+
 		//Logo
 		JLabel lblNewLabel = new JLabel("");
 		lblNewLabel.setBackground(Color.LIGHT_GRAY);
 		lblNewLabel.setIcon(new ImageIcon(Login.class.getResource("/img/logo.jpg")));
 		lblNewLabel.setBounds(20, 10, 40, 40);
 		contentPane.add(lblNewLabel);
-		
+
 		//Textfield do username
 		username = new JTextField();
 		username.setBounds(125, 50, 200, 25);
@@ -50,7 +50,7 @@ public class Login extends JFrame {
 		JLabel lblNome = new JLabel("Nome");
 		lblNome.setBounds(125, 30, 55, 15);
 		contentPane.add(lblNome);
-		
+
 		//Textfield da senha
 		password = new JPasswordField();
 		password.setBounds(125, 100, 200, 25);
@@ -60,7 +60,7 @@ public class Login extends JFrame {
 		JLabel lblSenha = new JLabel("Senha");
 		lblSenha.setBounds(125, 80, 55, 15);
 		contentPane.add(lblSenha);
-		
+				
 		//Botões
 		JButton btnLogin = new JButton("Login");
 		btnLogin.setBounds(175, 175, 100, 25);
@@ -81,14 +81,15 @@ public class Login extends JFrame {
 								frame.setVisible(true);
 							} catch (Exception e) {
 								e.printStackTrace();
-							}
+			                }
 						}
-					});
+		            });
 				}else {
 					System.out.println("Erro no login");
 				}
 			}
 		});
+		getRootPane().setDefaultButton(btnLogin);
 		
 		JButton btnRegistrar = new JButton("Registrar");
 		btnRegistrar.setBounds(330, 225, 100, 25);
@@ -96,7 +97,7 @@ public class Login extends JFrame {
 		btnRegistrar.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				EventQueue.invokeLater(new Runnable() {	
+				EventQueue.invokeLater(new Runnable() {
 					public void run() {
 						try {
 							SignUp frame = new SignUp();
@@ -109,7 +110,7 @@ public class Login extends JFrame {
 				});
 			}
 		});
-		
-		
+
+
 	}
 }
