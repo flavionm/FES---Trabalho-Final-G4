@@ -11,6 +11,7 @@ public class BootstrapDB {
 	public static void Bootstrap() {
 		conn = new ConnectionDB().getConection();
 		BootstrapEmployee();
+		BootstrapClient();
 		return;
 	}
 	
@@ -22,7 +23,17 @@ public class BootstrapDB {
 				+ "type int(1) DEFAULT 0,"
 				+ "PRIMARY KEY (id)"
 				+ ");";
-		String sql2 = "CREATE TABLE IF NOT EXISTS client ("
+		try {
+			st = conn.createStatement();
+			st.execute(sql);
+			st.close();
+		}catch(Exception e) {
+			throw new RuntimeException("Erro no bootstrap de employee:" + e);
+		}
+	}
+	
+	public static void BootstrapClient() {
+		String sql = "CREATE TABLE IF NOT EXISTS client ("
 				+ "id int(11) NOT NULL AUTO_INCREMENT,"
 				+ "name varchar(100) NOT NULL,"
 				+ "email varchar(100) NOT NULL UNIQUE,"
@@ -37,10 +48,9 @@ public class BootstrapDB {
 		try {
 			st = conn.createStatement();
 			st.execute(sql);
-			st.execute(sql2);
 			st.close();
 		}catch(Exception e) {
-			throw new RuntimeException("Erro no bootstrap de employee:" + e);
+			throw new RuntimeException("Erro no bootstrap de client:" + e);
 		}
 	}
 }
