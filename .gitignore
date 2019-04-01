@@ -3,5 +3,6 @@
 /nbproject/
 .classpath
 .project
+.settings
 build.xml
 manifest.mf
