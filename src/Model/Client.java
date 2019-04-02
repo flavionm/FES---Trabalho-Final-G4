@@ -5,20 +5,27 @@
  */
 package Model;
 
-/**
- *
- * @author nuno
- */
+import java.util.ArrayList;
+
 public class Client {
 
-	private String name;
-	private String email;
-	private String cpf;
-	private String phone;
-	private String cnh;
-	private String address;
-	private String city;
+	private int id;
+	private String name = "";
+	private String email = "";
+	private String cpf = "";
+	private String phone = "";
+	private String cnh = "";
+	private String address = "";
+	private String city = "";
 
+	public ArrayList<String> getDataForDashBoardTable() {
+		ArrayList<String> data = new ArrayList<>();
+		data.add(this.getName());
+		data.add(this.getPhone());
+		data.add(this.getCpf());
+		return data;
+	}
+	
 	public String getCity() {
 		return city;
 	}
@@ -94,5 +101,13 @@ public class Client {
 
 	public static boolean isOnDatabase(String email) {
 		return true;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 }

@@ -8,7 +8,7 @@ public class ConnectionDB {
 	public Connection getConection() {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			return DriverManager.getConnection("jdbc:mysql://localhost:3306/vocealuga", "root", "slickmac");
+			return DriverManager.getConnection("jdbc:mysql://localhost:3306/vocealuga", "LOGIN", "SENHA");
 		}catch (Exception e) {
 			throw new RuntimeException("Erro na conexão com BD: " + e);
 		}

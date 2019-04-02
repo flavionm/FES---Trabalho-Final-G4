@@ -12,8 +12,8 @@ package Model;
 public class Employee {
 
 	private int id; //Primary key
-	private String username;
-	private String password;
+	private String username = "";
+	private String password = "";
 	private int type;
 
 	public int getId() {

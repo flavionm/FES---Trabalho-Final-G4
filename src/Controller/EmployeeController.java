@@ -42,12 +42,13 @@ public class EmployeeController {
 			stmt.setString(1, employee.getUsername());
 			stmt.setString(2, employee.getPassword());
 			rs = stmt.executeQuery();
-			rs.next();
-			auth.setUsername(rs.getString("username"));
-			auth.setType(rs.getInt("type"));
+			if (rs.next()) {
+				auth.setUsername(rs.getString("username"));
+				auth.setType(rs.getInt("type"));
+			}
 			stmt.close();
 		}catch(Exception e) {
-			throw new RuntimeException("Erro no read de employee:" + e);
+			throw new RuntimeException("Erro no read de employee: " + e);
 		}
 		return auth;
 	}

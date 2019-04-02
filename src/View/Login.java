@@ -33,6 +33,8 @@ public class Login extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		
+		LoginWarning warningFrame = new LoginWarning();
 
 		//Logo
 		JLabel lblNewLabel = new JLabel("");
@@ -79,13 +81,14 @@ public class Login extends JFrame {
 							try {
 								Dashboard frame = new Dashboard(login);
 								frame.setVisible(true);
+								setVisible(false);
 							} catch (Exception e) {
 								e.printStackTrace();
 			                }
 						}
 		            });
 				}else {
-					System.out.println("Erro no login");
+					warningFrame.setVisible(true);
 				}
 			}
 		});
