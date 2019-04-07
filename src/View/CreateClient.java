@@ -47,7 +47,7 @@ public class CreateClient extends javax.swing.JFrame {
         txtCity = new javax.swing.JTextField();
         lblOptional = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.HIDE_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         lblName.setText("Nome:");
 
