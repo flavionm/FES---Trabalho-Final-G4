@@ -9,7 +9,11 @@ import Controller.ClientController;
 import Model.Address;
 import Model.Client;
 import Model.Employee;
+import java.awt.Component;
+import java.awt.Container;
+import java.awt.EventQueue;
 import javax.swing.JFrame;
+import javax.swing.JTable;
 
 public class CreateClient extends javax.swing.JFrame {
 	private ClientController controller = new ClientController();
@@ -196,9 +200,7 @@ public class CreateClient extends javax.swing.JFrame {
 		client.setState(txtState.getText());
 		controller.insert(client);
 		this.setVisible(false);
-		dashboard.dispose();
-		Dashboard new_dash = new Dashboard(employee);
-		new_dash.setVisible(true);
+		refresh();
 	}
 	
 	private void update() {
@@ -220,9 +222,20 @@ public class CreateClient extends javax.swing.JFrame {
 			client.setState(txtState.getText());
 		controller.update(client);
 		this.setVisible(false);
-		dashboard.dispose();
-		Dashboard new_dash = new Dashboard(employee);
-		new_dash.setVisible(true);
+		refresh();
+	}
+	
+	private void refresh() {
+		Container pane = dashboard.getContentPane();
+		for (Component c : pane.getComponents())
+			if (c instanceof JTable) {
+				System.out.println("Here");
+				pane.remove(c);
+				break;
+			}
+		dashboard.AtualizaTabela(dashboard.getContentPane());
+		pane.revalidate();
+		pane.repaint();
 	}
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

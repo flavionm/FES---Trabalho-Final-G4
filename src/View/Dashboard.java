@@ -14,6 +14,7 @@ import javax.swing.border.EmptyBorder;
 import Controller.ClientController;
 import Model.Client;
 import Model.Employee;
+import java.awt.Container;
 import javax.swing.JLabel;
 import javax.swing.JButton;
 import javax.swing.JTable;
@@ -154,7 +155,7 @@ public class Dashboard extends JFrame {
 		
 	}
 	
-	public void AtualizaTabela(JPanel panel) {
+	public void AtualizaTabela(Container panel) {
 		String [] columns = {"Nome", "Telefone", "Cpf"};
 		ArrayList<Object []> data = new ArrayList<>();
 		
