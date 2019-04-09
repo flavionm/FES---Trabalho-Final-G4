@@ -44,6 +44,8 @@ public class Dashboard extends JFrame {
 		lblBemVindo.setBounds(167, 38, 124, 15);
 		contentPane.add(lblBemVindo);
 		
+		Dashboard self = this;
+
 		JButton btnAdicionarCliente = new JButton("Adicionar cliente");
 		btnAdicionarCliente.setBounds(587, 12, 157, 25);
 		contentPane.add(btnAdicionarCliente);
@@ -53,7 +55,7 @@ public class Dashboard extends JFrame {
 				EventQueue.invokeLater(new Runnable() {
 					public void run() {
 						try {
-							CreateClient frame = new CreateClient();
+							CreateClient frame = new CreateClient(self, employee);
 							frame.setVisible(true);
 						} catch (Exception e) {
 							e.printStackTrace();
@@ -92,7 +94,7 @@ public class Dashboard extends JFrame {
 					EventQueue.invokeLater(new Runnable() {
 						public void run() {
 							try {
-								UpdateClient frame = new UpdateClient(cliente);
+								CreateClient frame = new CreateClient(self, employee, cliente);
 								frame.setVisible(true);
 							} catch (Exception e) {
 								e.printStackTrace();
