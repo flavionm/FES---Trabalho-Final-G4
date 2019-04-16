@@ -14,6 +14,7 @@ import javax.swing.border.EmptyBorder;
 import Controller.ClientController;
 import Model.Client;
 import Model.Employee;
+import java.awt.Container;
 import javax.swing.JLabel;
 import javax.swing.JButton;
 import javax.swing.JTable;
@@ -44,6 +45,8 @@ public class Dashboard extends JFrame {
 		lblBemVindo.setBounds(167, 38, 124, 15);
 		contentPane.add(lblBemVindo);
 		
+		Dashboard self = this;
+
 		JButton btnAdicionarCliente = new JButton("Adicionar cliente");
 		btnAdicionarCliente.setBounds(587, 12, 157, 25);
 		contentPane.add(btnAdicionarCliente);
@@ -53,7 +56,7 @@ public class Dashboard extends JFrame {
 				EventQueue.invokeLater(new Runnable() {
 					public void run() {
 						try {
-							CreateClient frame = new CreateClient();
+							CreateClient frame = new CreateClient(self, employee);
 							frame.setVisible(true);
 						} catch (Exception e) {
 							e.printStackTrace();
@@ -92,7 +95,7 @@ public class Dashboard extends JFrame {
 					EventQueue.invokeLater(new Runnable() {
 						public void run() {
 							try {
-								UpdateClient frame = new UpdateClient(cliente);
+								CreateClient frame = new CreateClient(self, employee, cliente);
 								frame.setVisible(true);
 							} catch (Exception e) {
 								e.printStackTrace();
@@ -130,7 +133,7 @@ public class Dashboard extends JFrame {
 		lblCpf = new JLabel("CPF");
 		lblCpf.setBounds(657, 65, 55, 15);
 		contentPane.add(lblCpf);
-		
+
 		JButton btnAdicionarVeiculo = new JButton("Adicionar Veículo");
 		btnAdicionarVeiculo.setBounds(12, 12, 139, 25);
 		contentPane.add(btnAdicionarVeiculo);
@@ -173,7 +176,7 @@ public class Dashboard extends JFrame {
 		
 	}
 	
-	public void AtualizaTabela(JPanel panel) {
+	public void AtualizaTabela(Container panel) {
 		String [] columns = {"Nome", "Telefone", "Cpf"};
 		ArrayList<Object []> data = new ArrayList<>();
 		

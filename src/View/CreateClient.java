@@ -8,14 +8,32 @@ package View;
 import Controller.ClientController;
 import Model.Address;
 import Model.Client;
+import Model.Employee;
+import java.awt.Component;
+import java.awt.Container;
+import java.awt.EventQueue;
 import javax.swing.JFrame;
+import javax.swing.JTable;
 
 public class CreateClient extends javax.swing.JFrame {
 	private ClientController controller = new ClientController();
+	private Dashboard dashboard;
+	private Employee employee;
+	private Client client;
 	/**
 	 * Creates new form CreateClient
 	 */
-	public CreateClient() {
+	public CreateClient(Dashboard dashboard, Employee employee) {
+		this.dashboard = dashboard;
+		this.employee = employee;
+		this.client = null;
+		initComponents();
+	}
+	
+	public CreateClient(Dashboard dashboard, Employee employee, Client client) {
+		this.dashboard = dashboard;
+		this.employee = employee;
+		this.client = client;
 		initComponents();
 	}
 
@@ -47,7 +65,7 @@ public class CreateClient extends javax.swing.JFrame {
         txtCity = new javax.swing.JTextField();
         lblOptional = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.HIDE_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         lblName.setText("Nome:");
 
@@ -163,7 +181,14 @@ public class CreateClient extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterActionPerformed
-        Client client = new Client();
+		if (client == null)
+			register();
+		else
+			update();
+    }//GEN-LAST:event_btnRegisterActionPerformed
+
+	private void register() {
+		Client client = new Client();
 		
 		client.setName(txtName.getText());
 		client.setEmail(txtEmail.getText());
@@ -175,8 +200,43 @@ public class CreateClient extends javax.swing.JFrame {
 		client.setState(txtState.getText());
 		controller.insert(client);
 		this.setVisible(false);
-    }//GEN-LAST:event_btnRegisterActionPerformed
-
+		refresh();
+	}
+	
+	private void update() {
+		if(!txtName.getText().equals(""))
+			client.setName(txtName.getText());
+		if(!txtEmail.getText().equals(""))
+			client.setEmail(txtEmail.getText());
+		if(!txtCpf.getText().equals(""))
+			client.setCpf(txtCpf.getText());
+		if(!txtPhone.getText().equals(""))
+			client.setPhone(txtPhone.getText());
+		if(!txtCnh.getText().equals(""))
+			client.setCnh(txtCnh.getText());
+		if(!txtAddress.getText().equals(""))
+			client.setAddress(txtAddress.getText());
+		if(!txtCity.getText().equals(""))
+			client.setCity(txtCity.getText());
+		if(!txtState.getText().equals(""))
+			client.setState(txtState.getText());
+		controller.update(client);
+		this.setVisible(false);
+		refresh();
+	}
+	
+	private void refresh() {
+		Container pane = dashboard.getContentPane();
+		for (Component c : pane.getComponents())
+			if (c instanceof JTable) {
+				System.out.println("Here");
+				pane.remove(c);
+				break;
+			}
+		dashboard.AtualizaTabela(dashboard.getContentPane());
+		pane.revalidate();
+		pane.repaint();
+	}
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnRegister;

@@ -16,35 +16,35 @@ public class BootstrapDB {
 		return;
 	}
 	
+
 	public static void BootstrapEmployee() {
 		String sql = "CREATE TABLE IF NOT EXISTS employee ("
-				+ "id int(11) NOT NULL AUTO_INCREMENT,"
-				+ "username varchar(100) NOT NULL UNIQUE,"
-				+ "password varchar(100) NOT NULL,"
-				+ "type int(1) DEFAULT 0,"
-				+ "PRIMARY KEY (id)"
+				+ "id SERIAL PRIMARY KEY,"
+				+ "username varchar(100) NOT NULL UNIQUE CHECK (LENGTH(TRIM(username)) > 0),"
+				+ "password varchar(100) NOT NULL CHECK (LENGTH(TRIM(password)) > 0),"
+				+ "type integer DEFAULT 0"
 				+ ");";
 		try {
 			st = conn.createStatement();
 			st.execute(sql);
 			st.close();
 		}catch(Exception e) {
+			e.printStackTrace();
 			throw new RuntimeException("Erro no bootstrap de employee:" + e);
 		}
 	}
 	
 	public static void BootstrapClient() {
 		String sql = "CREATE TABLE IF NOT EXISTS client ("
-				+ "id int(11) NOT NULL AUTO_INCREMENT,"
-				+ "name varchar(100) NOT NULL,"
-				+ "email varchar(100) NOT NULL UNIQUE,"
-				+ "cpf varchar(11) NOT NULL UNIQUE,"
-				+ "phone varchar(100) NOT NULL UNIQUE,"
+				+ "id SERIAL PRIMARY KEY,"
+				+ "name varchar(100) NOT NULL CHECK (LENGTH(TRIM(name)) > 0),"
+				+ "email varchar(100) NOT NULL UNIQUE CHECK (LENGTH(TRIM(email)) > 0),"
+				+ "cpf varchar(11) NOT NULL UNIQUE CHECK (LENGTH(TRIM(cpf)) > 0),"
+				+ "phone varchar(100) NOT NULL UNIQUE CHECK (LENGTH(TRIM(phone)) > 0),"
 				+ "cnh varchar(100) UNIQUE,"
 				+ "address varchar(100),"
 				+ "city varchar(100),"
-				+ "state varchar(100),"
-				+ "PRIMARY KEY(id)"
+				+ "state varchar(100)"
 				+ ");";
 		try {
 			st = conn.createStatement();
