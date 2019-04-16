@@ -11,7 +11,7 @@ public class Client {
 
 	private int id;
 	private String name = "";
-	private String email = "";
+	private String email;
 	private String cpf = "";
 	private String phone = "";
 	private String cnh = "";

@@ -74,7 +74,9 @@ public class SignUp extends JFrame {
 				EventQueue.invokeLater(new Runnable() {	
 					public void run() {
 						try {
+							Login frame = new Login();
 							setVisible(false);
+							frame.setVisible(true);
 						} catch (Exception e) {
 							e.printStackTrace();
 						}
@@ -82,7 +84,5 @@ public class SignUp extends JFrame {
 				});
 			}
 		});
-		
-		this.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 	}
 }

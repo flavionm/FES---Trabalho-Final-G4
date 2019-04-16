@@ -104,6 +104,7 @@ public class Login extends JFrame {
 					public void run() {
 						try {
 							SignUp frame = new SignUp();
+							setVisible(false);
 							frame.setVisible(true);
 						} catch (Exception e) {
 							e.printStackTrace();
