@@ -35,6 +35,14 @@ public class CreateClient extends javax.swing.JFrame {
 		this.employee = employee;
 		this.client = client;
 		initComponents();
+		txtAddress.setText(client.getAddress());
+		txtCity.setText(client.getCity());
+		txtCnh.setText(client.getCnh());
+		txtCpf.setText(client.getCpf());
+		txtEmail.setText(client.getEmail());
+		txtName.setText(client.getName());
+		txtPhone.setText(client.getPhone());
+		txtState.setText(client.getState());
 	}
 
 	/**
@@ -204,22 +212,14 @@ public class CreateClient extends javax.swing.JFrame {
 	}
 	
 	private void update() {
-		if(!txtName.getText().equals(""))
-			client.setName(txtName.getText());
-		if(!txtEmail.getText().equals(""))
-			client.setEmail(txtEmail.getText());
-		if(!txtCpf.getText().equals(""))
-			client.setCpf(txtCpf.getText());
-		if(!txtPhone.getText().equals(""))
-			client.setPhone(txtPhone.getText());
-		if(!txtCnh.getText().equals(""))
-			client.setCnh(txtCnh.getText());
-		if(!txtAddress.getText().equals(""))
-			client.setAddress(txtAddress.getText());
-		if(!txtCity.getText().equals(""))
-			client.setCity(txtCity.getText());
-		if(!txtState.getText().equals(""))
-			client.setState(txtState.getText());
+		client.setName(txtName.getText());
+		client.setEmail(txtEmail.getText());
+		client.setCpf(txtCpf.getText());
+		client.setPhone(txtPhone.getText());
+		client.setCnh(txtCnh.getText());
+		client.setAddress(txtAddress.getText());
+		client.setCity(txtCity.getText());
+		client.setState(txtState.getText());
 		controller.update(client);
 		this.setVisible(false);
 		refresh();
