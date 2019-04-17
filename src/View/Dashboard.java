@@ -18,6 +18,7 @@ import java.awt.Container;
 import javax.swing.JLabel;
 import javax.swing.JButton;
 import javax.swing.JTable;
+import javax.swing.border.BevelBorder;
 
 public class Dashboard extends JFrame {
 
@@ -29,6 +30,7 @@ public class Dashboard extends JFrame {
 	private JLabel lblNome;
 	private JLabel lblTelefone;
 	private JLabel lblCpf;
+	private JButton btnVeiculos;
 
 	public Dashboard(Employee employee) {
 	
@@ -76,6 +78,7 @@ public class Dashboard extends JFrame {
 		clients.forEach((element) -> data.add(element.getDataForDashBoardTable().toArray()));
 		
 		table = new JTable(data.toArray(new Object[][] {}), columns);
+		table.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
 		table.setBounds(40, 86, 734, 327);
 		contentPane.add(table);
 		
@@ -137,6 +140,29 @@ public class Dashboard extends JFrame {
 		JButton btnAdicionarVeiculo = new JButton("Adicionar Veículo");
 		btnAdicionarVeiculo.setBounds(12, 12, 139, 25);
 		contentPane.add(btnAdicionarVeiculo);
+		
+		btnVeiculos = new JButton("Veículos");
+		btnVeiculos.setBounds(40, 49, 98, 25);
+		contentPane.add(btnVeiculos);
+		
+		btnVeiculos.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				EventQueue.invokeLater(new Runnable() {
+					public void run() {
+						try {
+							SearchVehicle frame = new SearchVehicle();
+							frame.setVisible(true);
+						} catch (Exception e) {
+							e.printStackTrace();
+		                }
+					}
+	            });
+			}
+			
+		});
+		
 		btnAdicionarVeiculo.addActionListener(new ActionListener() {
 
 			@Override

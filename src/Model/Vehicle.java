@@ -1,20 +1,29 @@
 package Model;
 
+import java.util.ArrayList;
+
 public class Vehicle {
 
 	private int id;
 	private String brand;
 	private String model;
-	private int type;
+	private String type;
 	private String color;
 	private String plate;
 	private String document;
 	private String insurance;
 	private int disponibility;
-	private float cost;
+	private String cost;
 	private float km;
 	private String filial;
 	
+	public ArrayList<String> getDataForTable() {
+		ArrayList<String> data = new ArrayList<>();
+		data.add(this.getBrand());
+		data.add(this.getPlate());
+		data.add(this.getDocument());
+		return data;
+	}
 	
 	public int getId() {
 		return id;
@@ -34,10 +43,10 @@ public class Vehicle {
 	public void setModel(String model) {
 		this.model = model;
 	}
-	public int getType() {
+	public String getType() {
 		return type;
 	}
-	public void setType(int type) {
+	public void setType(String type) {
 		this.type = type;
 	}
 	public String getColor() {
@@ -70,10 +79,10 @@ public class Vehicle {
 	public void setDisponibility(int disponibility) {
 		this.disponibility = disponibility;
 	}
-	public float getCost() {
+	public String getCost() {
 		return cost;
 	}
-	public void setCost(float cost) {
+	public void setCost(String cost) {
 		this.cost = cost;
 	}
 	public float getKm() {
