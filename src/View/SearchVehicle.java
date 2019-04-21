@@ -17,6 +17,9 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.border.BevelBorder;
 import java.awt.Color;
+import java.awt.Component;
+import javax.swing.JButton;
+import javax.swing.WindowConstants;
 import javax.swing.table.DefaultTableModel;
 
 public class SearchVehicle extends JFrame {
@@ -24,12 +27,13 @@ public class SearchVehicle extends JFrame {
 	private JPanel contentPane;
 	private JTable table;
 	private JTextField textField;
+	private JButton search;
 	
 	private VehicleController controller = new VehicleController();
 
 
 	public SearchVehicle() {
-		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setTitle("Veículos");
 		setBounds(100, 100, 611, 371);
 		contentPane = new JPanel();
@@ -46,12 +50,35 @@ public class SearchVehicle extends JFrame {
 		contentPane.add(textField);
 		textField.setColumns(10);
 		
+		search = new JButton();
+		search.setBounds(350, 10, 104, 19);
+		search.setText("Buscar");
+		contentPane.add(search);
+		search.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ArrayList<Vehicle> vehicles = controller.search(textField.getText());
+				for (Component c : contentPane.getComponents())
+					if (c instanceof JTable) {
+						System.out.println("Here");
+						contentPane.remove(c);
+						break;
+					}
+				criaTabela(vehicles);
+				contentPane.revalidate();
+				contentPane.repaint();
+			}
+        });
+		rootPane.setDefaultButton(search);
+		
+		ArrayList<Vehicle> vehicles = controller.readAll();
+		criaTabela(vehicles);
+	}
+	
+	private void criaTabela(ArrayList<Vehicle> vehicles) {
 		String [] columnNames = {"Marca", "Placa", "Documento"};
 		ArrayList<Object []> data = new ArrayList<>();
 		
-		ArrayList<Vehicle> clients = controller.readAll();
-		
-		clients.forEach((element) -> data.add(element.getDataForTable().toArray()));
+		vehicles.forEach((element) -> data.add(element.getDataForTable().toArray()));
 		
 		table = new JTable(data.toArray(new Object[][] {}), columnNames);
 		
@@ -60,7 +87,5 @@ public class SearchVehicle extends JFrame {
 		table.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
 		table.setBounds(12, 72, 587, 250);
 		contentPane.add(table);
-		
-
 	}
 }

@@ -57,7 +57,7 @@ public class BootstrapDB {
 	
 	public static void BootstrapVehicle() {
 		String sql = "CREATE TABLE IF NOT EXISTS vehicle ("
-				+ "id int(11) NOT NULL AUTO_INCREMENT,"
+				+ "id serial NOT NULL,"
 				+ "brand varchar(100) NOT NULL,"
 				+ "model varchar(100) NOT NULL UNIQUE,"
 				+ "type varchar(11) NOT NULL UNIQUE,"
@@ -65,9 +65,9 @@ public class BootstrapDB {
 				+ "plate varchar(100) UNIQUE,"
 				+ "document varchar(100),"
 				+ "insurance varchar(100),"
-				+ "disponibility int(11) DEFAULT 0,"
+				+ "disponibility int DEFAULT 0,"
 				+ "cost varchar(50),"
-				+ "km float(5) DEFAULT 0,"
+				+ "km float DEFAULT 0,"
 				+ "filial varchar(100),"
 				+ "PRIMARY KEY(id)"
 				+ ");";

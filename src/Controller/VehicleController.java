@@ -8,6 +8,7 @@ import java.util.ArrayList;
 
 import Model.Client;
 import Model.Vehicle;
+import java.sql.SQLException;
 
 public class VehicleController {
 	
@@ -36,7 +37,7 @@ public class VehicleController {
 			stmt.execute();
 			stmt.close();
 		}catch(Exception e) {
-			throw new RuntimeException("Erro no insert de client:" + e);
+			throw new RuntimeException("Erro no insert de vehicle:" + e);
 		}
 	
 	}
@@ -48,22 +49,47 @@ public class VehicleController {
 			st = conn.createStatement();
 			rs = st.executeQuery(sql);
 			while(rs.next()) {
-				Vehicle vehicle = new Vehicle();
-				vehicle.setBrand(rs.getString("brand"));
-				vehicle.setModel(rs.getString("model"));
-				vehicle.setType(rs.getString("type"));
-				vehicle.setPlate(rs.getString("plate"));
-				vehicle.setColor(rs.getString("color"));
-				vehicle.setDocument(rs.getString("document"));
-				vehicle.setInsurance(rs.getString("insurance"));
-				vehicle.setDisponibility(rs.getInt("disponibility"));
-				vehicle.setCost(rs.getString("cost"));
-				vehicle.setId(rs.getInt("id"));
+				Vehicle vehicle = createVehicle(rs);
 				data.add(vehicle);
 			}
 			st.close();
 		}catch(Exception e) {
 			throw new RuntimeException("Erro no readAll de vehicle:" + e);
+		}
+		return data;
+	}
+	
+	private Vehicle createVehicle(ResultSet rs) throws SQLException {
+		Vehicle vehicle = new Vehicle();
+		vehicle.setBrand(rs.getString("brand"));
+		vehicle.setModel(rs.getString("model"));
+		vehicle.setType(rs.getString("type"));
+		vehicle.setPlate(rs.getString("plate"));
+		vehicle.setColor(rs.getString("color"));
+		vehicle.setDocument(rs.getString("document"));
+		vehicle.setInsurance(rs.getString("insurance"));
+		vehicle.setDisponibility(rs.getInt("disponibility"));
+		vehicle.setCost(rs.getString("cost"));
+		vehicle.setId(rs.getInt("id"));
+		return vehicle;
+	}
+	
+	public ArrayList<Vehicle> search(String param) {
+		String sql = "SELECT * FROM vehicle WHERE brand = ? OR plate = ? OR document = ?";
+		ArrayList<Vehicle> data = new ArrayList<>();
+		try {
+			stmt = conn.prepareStatement(sql);
+			stmt.setString(1, param);
+			stmt.setString(2, param);
+			stmt.setString(3, param);
+			rs = stmt.executeQuery();
+			while (rs.next()) {
+				Vehicle vehicle = createVehicle(rs);
+				data.add(vehicle);
+			}
+			stmt.close();
+		} catch(Exception e) {
+			throw new RuntimeException("Erro no busca de vehicle:" + e);
 		}
 		return data;
 	}
