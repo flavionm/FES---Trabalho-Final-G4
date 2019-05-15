@@ -25,7 +25,7 @@ public class SignUp extends JFrame {
 	public EmployeeController controller = new EmployeeController();
 	private JPasswordField passwordField;
 
-	public SignUp() {
+	public SignUp(JFrame parent) {
 		setTitle("Cadastro de funcionário");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
@@ -74,7 +74,8 @@ public class SignUp extends JFrame {
 				EventQueue.invokeLater(new Runnable() {	
 					public void run() {
 						try {
-							setVisible(false);
+							dispose();
+							parent.setVisible(true);
 						} catch (Exception e) {
 							e.printStackTrace();
 						}
@@ -83,6 +84,6 @@ public class SignUp extends JFrame {
 			}
 		});
 		
-		this.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+		this.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 	}
 }

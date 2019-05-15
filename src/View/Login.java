@@ -97,13 +97,14 @@ public class Login extends JFrame {
 		JButton btnRegistrar = new JButton("Registrar");
 		btnRegistrar.setBounds(330, 225, 100, 25);
 		contentPane.add(btnRegistrar);
+		JFrame parent = this;
 		btnRegistrar.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				EventQueue.invokeLater(new Runnable() {
 					public void run() {
 						try {
-							SignUp frame = new SignUp();
+							SignUp frame = new SignUp(parent);
 							setVisible(false);
 							frame.setVisible(true);
 						} catch (Exception e) {
