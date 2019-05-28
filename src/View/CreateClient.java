@@ -13,6 +13,7 @@ import java.awt.Component;
 import java.awt.Container;
 import java.awt.EventQueue;
 import javax.swing.JFrame;
+import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
 public class CreateClient extends javax.swing.JFrame {
@@ -228,7 +229,7 @@ public class CreateClient extends javax.swing.JFrame {
 	private void refresh() {
 		Container pane = dashboard.getContentPane();
 		for (Component c : pane.getComponents())
-			if (c instanceof JTable) {
+			if (c instanceof JScrollPane) {
 				System.out.println("Here");
 				pane.remove(c);
 				break;

@@ -17,6 +17,7 @@ import Model.Employee;
 import java.awt.Container;
 import javax.swing.JLabel;
 import javax.swing.JButton;
+import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.border.BevelBorder;
 
@@ -68,20 +69,8 @@ public class Dashboard extends JFrame {
 			}
 		});
 		
-		
-		
-		String [] columns = {"Nome", "Telefone", "Cpf"};
-		ArrayList<Object []> data = new ArrayList<>();
-		
-		ArrayList<Client> clients = controller.readAll();
-		
-		clients.forEach((element) -> data.add(element.getDataForDashBoardTable().toArray()));
-		
-		table = new JTable(data.toArray(new Object[][] {}), columns);
-		table.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
-		table.setBounds(40, 86, 734, 327);
-		contentPane.add(table);
-		
+		ArrayList<Client> clients = AtualizaTabela(contentPane);
+
 		int y = 86;
 		
 		for (Client cliente : clients) {
@@ -125,18 +114,6 @@ public class Dashboard extends JFrame {
 		btnAtualizar.setBounds(353, 426, 98, 25);
 		contentPane.add(btnAtualizar);
 		
-		lblNome = new JLabel("Nome");
-		lblNome.setBounds(177, 65, 55, 15);
-		contentPane.add(lblNome);
-		
-		lblTelefone = new JLabel("Telefone");
-		lblTelefone.setBounds(437, 65, 55, 15);
-		contentPane.add(lblTelefone);
-		
-		lblCpf = new JLabel("CPF");
-		lblCpf.setBounds(657, 65, 55, 15);
-		contentPane.add(lblCpf);
-
 		JButton btnAdicionarVeiculo = new JButton("Adicionar Veículo");
 		btnAdicionarVeiculo.setBounds(12, 12, 139, 25);
 		contentPane.add(btnAdicionarVeiculo);
@@ -202,7 +179,7 @@ public class Dashboard extends JFrame {
 		
 	}
 	
-	public void AtualizaTabela(Container panel) {
+	public ArrayList<Client> AtualizaTabela(Container panel) {
 		String [] columns = {"Nome", "Telefone", "Cpf"};
 		ArrayList<Object []> data = new ArrayList<>();
 		
@@ -210,9 +187,12 @@ public class Dashboard extends JFrame {
 		
 		clients.forEach((element) -> data.add(element.getDataForDashBoardTable().toArray()));
 		
-		
+		JScrollPane pane = new JScrollPane();
 		table = new JTable(data.toArray(new Object[][] {}), columns);
-		table.setBounds(40, 86, 734, 349);
-		panel.add(table);
+		pane.setViewportView(table);
+		pane.setBounds(40, 86, 734, 349);
+		panel.add(pane);
+		
+		return clients;
 	}
 }

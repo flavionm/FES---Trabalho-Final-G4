@@ -19,6 +19,7 @@ import javax.swing.border.BevelBorder;
 import java.awt.Color;
 import java.awt.Component;
 import javax.swing.JButton;
+import javax.swing.JScrollPane;
 import javax.swing.WindowConstants;
 import javax.swing.table.DefaultTableModel;
 
@@ -58,7 +59,7 @@ public class SearchVehicle extends JFrame {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ArrayList<Vehicle> vehicles = controller.search(textField.getText());
 				for (Component c : contentPane.getComponents())
-					if (c instanceof JTable) {
+					if (c instanceof JScrollPane) {
 						System.out.println("Here");
 						contentPane.remove(c);
 						break;
@@ -83,9 +84,10 @@ public class SearchVehicle extends JFrame {
 		table = new JTable(data.toArray(new Object[][] {}), columnNames);
 		
 		
-		table.setBackground(Color.WHITE);
-		table.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
-		table.setBounds(12, 72, 587, 250);
-		contentPane.add(table);
+		JScrollPane pane = new JScrollPane();
+		pane.setBounds(12, 72, 587, 250);
+		pane.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
+		pane.setViewportView(table);
+		contentPane.add(pane);
 	}
 }
