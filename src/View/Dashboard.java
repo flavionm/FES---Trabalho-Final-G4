@@ -71,7 +71,7 @@ public class Dashboard extends JFrame {
 		
 		ArrayList<Client> clients = AtualizaTabela(contentPane);
 
-		int y = 86;
+		int y = 106;
 		
 		for (Client cliente : clients) {
 

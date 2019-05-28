@@ -29,6 +29,7 @@ public class SearchVehicle extends JFrame {
 	private JTable table;
 	private JTextField textField;
 	private JButton search;
+	private JButton clear;
 	
 	private VehicleController controller = new VehicleController();
 
@@ -71,6 +72,24 @@ public class SearchVehicle extends JFrame {
         });
 		rootPane.setDefaultButton(search);
 		
+		clear = new JButton();
+		clear.setBounds(470, 10, 104, 19);
+		clear.setText("Limpar");
+		contentPane.add(clear);
+		clear.addActionListener(new java.awt.event.ActionListener() {
+			public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ArrayList<Vehicle> vehicles = controller.readAll();
+				for (Component c : contentPane.getComponents())
+					if (c instanceof JScrollPane) {
+						System.out.println("Cleared");
+						contentPane.remove(c);
+						break;
+					}
+				criaTabela(vehicles);
+				contentPane.revalidate();
+				contentPane.repaint();
+			}
+        });
 		ArrayList<Vehicle> vehicles = controller.readAll();
 		criaTabela(vehicles);
 	}
