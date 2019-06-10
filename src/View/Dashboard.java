@@ -190,7 +190,7 @@ public class Dashboard extends JFrame {
 		JScrollPane pane = new JScrollPane();
 		table = new JTable(data.toArray(new Object[][] {}), columns);
 		pane.setViewportView(table);
-		pane.setBounds(40, 86, 734, 349);
+		pane.setBounds(40, 86, 734, 320);
 		panel.add(pane);
 		
 		return clients;

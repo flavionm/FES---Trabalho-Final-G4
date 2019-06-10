@@ -44,7 +44,10 @@ public class BootstrapDB {
 				+ "cnh varchar(100) UNIQUE,"
 				+ "address varchar(100),"
 				+ "city varchar(100),"
-				+ "state varchar(100)"
+				+ "state varchar(100),"
+				+ "vip boolean DEFAULT FALSE,"
+				+ "rents integer DEFAULT 0,"
+				+ "blacklist boolean DEFAULT FALSE"
 				+ ");";
 		try {
 			st = conn.createStatement();
