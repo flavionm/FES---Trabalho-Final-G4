@@ -10,6 +10,8 @@ import java.util.concurrent.atomic.AtomicInteger;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 
 import Controller.ClientController;
 import Model.Client;
@@ -19,6 +21,7 @@ import javax.swing.JLabel;
 import javax.swing.JButton;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.ListSelectionModel;
 import javax.swing.border.BevelBorder;
 
 public class Dashboard extends JFrame {
@@ -178,21 +181,53 @@ public class Dashboard extends JFrame {
 		});
 		
 	}
-	
+
+	int iSelectedIndex =-1;
+	ArrayList<Object []> data;
+	ArrayList<Client> clients;
 	public ArrayList<Client> AtualizaTabela(Container panel) {
 		String [] columns = {"Nome", "Telefone", "Cpf"};
-		ArrayList<Object []> data = new ArrayList<>();
+		data = new ArrayList<>();
 		
-		ArrayList<Client> clients = controller.readAll();
+		clients = controller.readAll();
 		
 		clients.forEach((element) -> data.add(element.getDataForDashBoardTable().toArray()));
 		
 		JScrollPane pane = new JScrollPane();
 		table = new JTable(data.toArray(new Object[][] {}), columns);
+		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		ListSelectionModel selectionModel = table.getSelectionModel();
+		
+		selectionModel.addListSelectionListener(new ListSelectionListener() {
+			public void valueChanged(ListSelectionEvent e) {
+				handleSelectionEvent(e);
+			}
+		});
+		
 		pane.setViewportView(table);
 		pane.setBounds(40, 86, 734, 320);
 		panel.add(pane);
 		
 		return clients;
+	}
+
+	protected void handleSelectionEvent(ListSelectionEvent e) {
+	    if (e.getValueIsAdjusting())
+	        return;
+
+	    String strSource= e.getSource().toString();
+	    int start = strSource.indexOf("{")+1,
+	        stop  = strSource.length()-1;
+	    iSelectedIndex = Integer.parseInt(strSource.substring(start, stop));
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					ClientInfo frame = new ClientInfo(clients.get(iSelectedIndex));
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
 	}
 }
