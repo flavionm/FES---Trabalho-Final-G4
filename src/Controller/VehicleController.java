@@ -42,8 +42,49 @@ public class VehicleController {
 	
 	}
 	
+	public void rent(Vehicle vehicle) {
+		String sql = "UPDATE vehicle set disponibility = 1 where id = ?;";
+		try {
+			stmt = conn.prepareStatement(sql);
+			stmt.setInt(1, vehicle.getId());
+			stmt.execute();
+			stmt.close();
+		} catch(Exception e) {
+			throw new RuntimeException("Erro no rent de vehicle: " + e);
+		}
+	}
+	
+	public void returnVehicle(int id) {
+		String sql = "UPDATE vehicle set disponibility = 0 where id = ?;";
+		try {
+			stmt = conn.prepareStatement(sql);
+			stmt.setInt(1, id);
+			stmt.execute();
+			stmt.close();
+		} catch(Exception e) {
+			throw new RuntimeException("Erro no rent de vehicle: " + e);
+		}
+	}
+	
 	public ArrayList<Vehicle> readAll() {
 		String sql = "SELECT * FROM vehicle;";
+		ArrayList<Vehicle> data = new ArrayList<>();
+		try {
+			st = conn.createStatement();
+			rs = st.executeQuery(sql);
+			while(rs.next()) {
+				Vehicle vehicle = createVehicle(rs);
+				data.add(vehicle);
+			}
+			st.close();
+		}catch(Exception e) {
+			throw new RuntimeException("Erro no readAll de vehicle:" + e);
+		}
+		return data;
+	}
+	
+	public ArrayList<Vehicle> readAllAvailable() {
+		String sql = "SELECT * FROM vehicle where disponibility = 0;";
 		ArrayList<Vehicle> data = new ArrayList<>();
 		try {
 			st = conn.createStatement();

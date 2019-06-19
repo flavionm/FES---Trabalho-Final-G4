@@ -5,10 +5,6 @@
  */
 package Model;
 
-/**
- *
- * @author nuno
- */
 public class Employee {
 
 	private int id; //Primary key

@@ -13,6 +13,7 @@ public class BootstrapDB {
 		BootstrapEmployee();
 		BootstrapClient();
 		BootstrapVehicle();
+		BootstrapRent();
 		return;
 	}
 	
@@ -30,7 +31,7 @@ public class BootstrapDB {
 			st.close();
 		}catch(Exception e) {
 			e.printStackTrace();
-			throw new RuntimeException("Erro no bootstrap de employee:" + e);
+			throw new RuntimeException("Erro no bootstrap de employee: " + e);
 		}
 	}
 	
@@ -54,7 +55,7 @@ public class BootstrapDB {
 			st.execute(sql);
 			st.close();
 		}catch(Exception e) {
-			throw new RuntimeException("Erro no bootstrap de client:" + e);
+			throw new RuntimeException("Erro no bootstrap de client: " + e);
 		}
 	}
 	
@@ -79,7 +80,28 @@ public class BootstrapDB {
 			st.execute(sql);
 			st.close();
 		}catch(Exception e) {
-			throw new RuntimeException("Erro no bootstrap de vehicle:" + e);
+			throw new RuntimeException("Erro no bootstrap de vehicle: " + e);
+		}
+	}
+	
+	public static void BootstrapRent() {
+		String sql = "CREATE TABLE IF NOT EXISTS rent ("
+				+ "id SERIAL PRIMARY KEY,"
+				+ "client_id BIGINT UNSIGNED,"
+				+ "vehicle_id BIGINT UNSIGNED,"
+				+ "completed BOOLEAN DEFAULT 0,"
+				+ "start_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,"
+				+ "end_date TIMESTAMP ON UPDATE CURRENT_TIMESTAMP NULL,"
+				+ "FOREIGN KEY(client_id) REFERENCES client(id),"
+				+ "FOREIGN KEY(vehicle_id) REFERENCES vehicle(id)"
+				+ ");";
+		try {
+			st = conn.createStatement();
+			st.execute(sql);
+			st.close();
+		}catch(Exception e) {
+			e.printStackTrace();
+			throw new RuntimeException("Erro no bootstrap de rent: " + e);
 		}
 	}
 }

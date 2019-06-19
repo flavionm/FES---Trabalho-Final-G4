@@ -110,7 +110,7 @@ public class Dashboard extends JFrame {
 			lblTipo = new JLabel("Funcionário");
 		}
 		
-		lblTipo.setBounds(403, 0, 100, 15);
+		lblTipo.setBounds(403, 30, 100, 15);
 		contentPane.add(lblTipo);
 		
 		btnAtualizar = new JButton("Atualizar");
