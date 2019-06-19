@@ -48,7 +48,7 @@ public class ChooseVehicle extends JFrame {
 	ArrayList<Vehicle> vehicles = controller.readAllAvailable();
 
 
-	public ChooseVehicle(Client client) {
+	public ChooseVehicle(Client client, ClientInfo clientInfo) {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		ChooseVehicle window = this;
 		setTitle("Veículos Disponíveis");
@@ -80,7 +80,7 @@ public class ChooseVehicle extends JFrame {
 						contentPane.remove(c);
 						break;
 					}
-				criaTabela(vehicles, client, window);
+				criaTabela(vehicles, client, window, clientInfo);
 				contentPane.revalidate();
 				contentPane.repaint();
 			}
@@ -100,15 +100,15 @@ public class ChooseVehicle extends JFrame {
 						contentPane.remove(c);
 						break;
 					}
-				criaTabela(vehicles, client, window);
+				criaTabela(vehicles, client, window, clientInfo);
 				contentPane.revalidate();
 				contentPane.repaint();
 			}
         });
-		criaTabela(vehicles, client, this);
+		criaTabela(vehicles, client, this, clientInfo);
 	}
 	
-	private void criaTabela(ArrayList<Vehicle> vehicles, Client client, ChooseVehicle window) {
+	private void criaTabela(ArrayList<Vehicle> vehicles, Client client, ChooseVehicle window, ClientInfo clientInfo) {
 		String [] columnNames = {"Marca", "Placa", "Documento"};
 		ArrayList<Object []> data = new ArrayList<>();
 		
@@ -137,6 +137,8 @@ public class ChooseVehicle extends JFrame {
 				rentController.start(rent);
 				
 				controller.rent(vehicles.get(iSelectedIndex));
+				
+				clientInfo.AtualizaLista(client);
 				window.setVisible(false);
 				
 			}

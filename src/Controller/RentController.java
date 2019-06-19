@@ -66,7 +66,7 @@ public class RentController {
 	}
 	
 	public ArrayList<Rent> readAllFromClient(Client client) {
-		String sql = "SELECT * FROM rent where client_id = ?;";
+		String sql = "SELECT * FROM rent where client_id = ? ORDER BY start_date DESC;";
 		ArrayList<Rent> data = new ArrayList<>();
 		try {
 			stmt = conn.prepareStatement(sql);
