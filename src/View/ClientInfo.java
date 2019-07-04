@@ -11,16 +11,12 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import javax.swing.BoxLayout;
-import com.jgoodies.forms.layout.FormLayout;
-import com.jgoodies.forms.layout.ColumnSpec;
-import com.jgoodies.forms.layout.RowSpec;
 
 import Controller.RentController;
 import Controller.VehicleController;
 import Model.Client;
 import Model.Rent;
 
-import com.jgoodies.forms.layout.FormSpecs;
 import javax.swing.JList;
 import javax.swing.JButton;
 
