@@ -93,7 +93,7 @@ public class ChooseVehicle extends JFrame {
 		contentPane.add(clear);
 		clear.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ArrayList<Vehicle> vehicles = controller.readAll();
+                ArrayList<Vehicle> vehicles = controller.readAllAvailable();
 				for (Component c : contentPane.getComponents())
 					if (c instanceof JScrollPane) {
 						System.out.println("Cleared");
@@ -162,6 +162,7 @@ public class ChooseVehicle extends JFrame {
 	    String strSource= e.getSource().toString();
 	    int start = strSource.indexOf("{")+1,
 	        stop  = strSource.length()-1;
+		System.out.println(strSource);
 	    iSelectedIndex = Integer.parseInt(strSource.substring(start, stop));
 	    btnEscolher.setEnabled(true);
 	    System.out.println(vehicles.get(iSelectedIndex).getId());

@@ -87,11 +87,11 @@ public class BootstrapDB {
 	public static void BootstrapRent() {
 		String sql = "CREATE TABLE IF NOT EXISTS rent ("
 				+ "id SERIAL PRIMARY KEY,"
-				+ "client_id BIGINT UNSIGNED,"
-				+ "vehicle_id BIGINT UNSIGNED,"
-				+ "completed BOOLEAN DEFAULT 0,"
+				+ "client_id BIGINT,"
+				+ "vehicle_id BIGINT,"
+				+ "completed BOOLEAN DEFAULT FALSE,"
 				+ "start_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,"
-				+ "end_date TIMESTAMP ON UPDATE CURRENT_TIMESTAMP NULL,"
+				+ "end_date TIMESTAMP,"
 				+ "FOREIGN KEY(client_id) REFERENCES client(id),"
 				+ "FOREIGN KEY(vehicle_id) REFERENCES vehicle(id)"
 				+ ");";

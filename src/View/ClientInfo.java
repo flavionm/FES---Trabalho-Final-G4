@@ -19,6 +19,9 @@ import Model.Rent;
 
 import javax.swing.JList;
 import javax.swing.JButton;
+import javax.swing.ListSelectionModel;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 
 public class ClientInfo extends JFrame {
 
@@ -50,16 +53,8 @@ public class ClientInfo extends JFrame {
 	public void AtualizaLista(Client client) {
 		
 		rentsList = rentController.readAllFromClient(client);
-		rented = false;
 		rentedIndex = -1;
 		
-		for (int i = 0; i < rentsList.size(); i++) {
-			if(rentsList.get(i).isCompleted() == false) {
-				rented = true;
-				rentedIndex = i;
-			}
-		}
-	
 		contentPane.removeAll();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -115,6 +110,7 @@ public class ClientInfo extends JFrame {
 			}
 			
 		});
+		btnNewButton.setEnabled(true);
 
 		btnNewButton_1 = new JButton("Finalizar aluguel");
 		btnNewButton_1.setBounds(508, 350, 240, 76);
@@ -129,7 +125,7 @@ public class ClientInfo extends JFrame {
 				AtualizaLista(client);
 			}
 		});
-
+		btnNewButton_1.setEnabled(false);
 		
 		String rents[] = new String[20];
 		
@@ -142,8 +138,15 @@ public class ClientInfo extends JFrame {
 		JList list = new JList(rents);
 		list.setBounds(74, 174, 398, 306);
 		contentPane.add(list);
+		list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		ListSelectionModel selectionModel = list.getSelectionModel();
 		
-		if (!rented) btnNewButton_1.setEnabled(false);
-		if (rented) btnNewButton.setEnabled(false);
+		selectionModel.addListSelectionListener(new ListSelectionListener() {
+			public void valueChanged(ListSelectionEvent e) {
+				rentedIndex = list.getSelectedIndex();
+				boolean isCompleted = rentsList.get(rentedIndex).isCompleted();
+				btnNewButton_1.setEnabled(!isCompleted);
+			}
+		});
 	}
 }

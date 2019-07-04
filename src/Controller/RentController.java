@@ -37,7 +37,7 @@ public class RentController {
 	}
 	
 	public void end(Rent rent) {
-		String sql = "UPDATE rent SET completed = 1 where id = ?;";
+		String sql = "UPDATE rent SET completed = TRUE where id = ?;";
 		try {
 			stmt = conn.prepareStatement(sql);
 			stmt.setInt(1, rent.getId());
