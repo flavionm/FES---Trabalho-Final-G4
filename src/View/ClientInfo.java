@@ -1,7 +1,5 @@
 package View;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -10,7 +8,6 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
-import javax.swing.BoxLayout;
 
 import Controller.RentController;
 import Controller.VehicleController;
@@ -96,20 +93,15 @@ public class ClientInfo extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				
-				EventQueue.invokeLater(new Runnable() {
-					public void run() {
-						try {
-							ChooseVehicle frame = new ChooseVehicle(client, page);
-							frame.setVisible(true);
-						} catch (Exception e) {
-							e.printStackTrace();
-		                }
-					}
-	            });
+				try {
+					ChooseVehicle frame = new ChooseVehicle(client, page);
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+                }
 			}
-			
-		});
+        });
+
 		btnNewButton.setEnabled(true);
 
 		btnNewButton_1 = new JButton("Finalizar aluguel");
@@ -127,15 +119,17 @@ public class ClientInfo extends JFrame {
 		});
 		btnNewButton_1.setEnabled(false);
 		
-		String rents[] = new String[20];
+		ArrayList<String> rents= new ArrayList<>();
 		
 		for (int i = 0; i < rentsList.size() && i < 20 ; i++) {
-			rents[i] = "Veículo " + rentsList.get(i).getVehicle_id() + " desde " + rentsList.get(i).getStart_date();
-			if (rentsList.get(i).getEnd_date() != null) rents[i] += " até " + rentsList.get(i).getEnd_date();
-			else rents[i] += " ainda alugado...";
+			String rent = "Veículo " + rentsList.get(i).getVehicle_id() + " desde " + rentsList.get(i).getStart_date().toString();
+			rent += " até " + rentsList.get(i).getEnd_date().toString();
+			if(rentsList.get(i).isCompleted()) rent += " finalizado";
+			else rent += " em andamento";
+			rents.add(rent);
 		}
 		
-		JList list = new JList(rents);
+		JList list = new JList(rents.toArray());
 		list.setBounds(74, 174, 398, 306);
 		contentPane.add(list);
 		list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);

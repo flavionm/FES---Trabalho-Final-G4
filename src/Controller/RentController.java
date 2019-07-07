@@ -23,11 +23,13 @@ public class RentController {
 	}
 	
 	public void start(Rent rent) {
-		String sql = "INSERT INTO rent (client_id, vehicle_id) VALUES (?, ?);";
+		String sql = "INSERT INTO rent (client_id, vehicle_id, start_date, end_date) VALUES (?, ?, ?, ?);";
 		try {
 			stmt = conn.prepareStatement(sql);
 			stmt.setInt(1, rent.getClient_id());
 			stmt.setInt(2, rent.getVehicle_id());
+			stmt.setDate(3, java.sql.Date.valueOf(rent.getStart_date()));
+			stmt.setDate(4, java.sql.Date.valueOf(rent.getEnd_date()));
 			stmt.execute();
 			stmt.close();
 		}catch(Exception e) {
@@ -89,8 +91,8 @@ public class RentController {
 		rent.setId(rs.getInt("id"));
 		rent.setClient_id(rs.getInt("client_id"));
 		rent.setVehicle_id(rs.getInt("vehicle_id"));
-		rent.setStart_date(rs.getTimestamp("start_date"));
-		rent.setEnd_date(rs.getTimestamp("end_date"));
+		rent.setStart_date(rs.getDate("start_date").toLocalDate());
+		rent.setEnd_date(rs.getDate("end_date").toLocalDate());
 		rent.setCompleted(rs.getBoolean("completed"));
 		return rent;
 	}

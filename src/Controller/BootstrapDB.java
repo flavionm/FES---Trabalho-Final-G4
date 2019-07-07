@@ -69,7 +69,6 @@ public class BootstrapDB {
 				+ "plate varchar(100) UNIQUE,"
 				+ "document varchar(100),"
 				+ "insurance varchar(100),"
-				+ "disponibility int DEFAULT 0,"
 				+ "cost varchar(50),"
 				+ "km float DEFAULT 0,"
 				+ "filial varchar(100),"
@@ -85,16 +84,32 @@ public class BootstrapDB {
 	}
 	
 	public static void BootstrapRent() {
-		String sql = "CREATE TABLE IF NOT EXISTS rent ("
-				+ "id SERIAL PRIMARY KEY,"
-				+ "client_id BIGINT,"
-				+ "vehicle_id BIGINT,"
-				+ "completed BOOLEAN DEFAULT FALSE,"
-				+ "start_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,"
-				+ "end_date TIMESTAMP,"
-				+ "FOREIGN KEY(client_id) REFERENCES client(id),"
-				+ "FOREIGN KEY(vehicle_id) REFERENCES vehicle(id)"
-				+ ");";
+		String sql = "CREATE TABLE IF NOT EXISTS rent (\n"
+				+ "id SERIAL PRIMARY KEY,\n"
+				+ "client_id BIGINT,\n"
+				+ "vehicle_id BIGINT,\n"
+				+ "completed BOOLEAN DEFAULT FALSE,\n"
+				+ "start_date DATE NOT NULL,\n"
+				+ "end_date DATE NOT NULL CHECK (end_date > start_date),\n"
+				+ "FOREIGN KEY(client_id) REFERENCES client(id),\n"
+				+ "FOREIGN KEY(vehicle_id) REFERENCES vehicle(id)\n"
+				+ ");\n"
+				+ "CREATE OR REPLACE FUNCTION no_overlap() RETURNS trigger AS $no_overlap$\n"
+				+ "BEGIN\n"
+				+ "	IF (EXISTS (SELECT *\n"
+				+ "	            FROM rent r\n"
+				+ "	            WHERE r.vehicle_id = NEW.vehicle_id AND NOT (NEW.end_date < r.start_date OR NEW.start_date > r.end_date)\n"
+				+ "	           )\n"
+				+ "	   )\n"
+				+ "	THEN RAISE EXCEPTION \'veiculo ja alugado nesse horario\';\n"
+				+ "	END IF;"
+				+ "	RETURN NEW;\n"
+				+ "END\n"
+				+ "$no_overlap$ LANGUAGE plpgsql;\n"
+				+ "DROP TRIGGER IF EXISTS no_overlap ON rent;"
+				+ "CREATE TRIGGER no_overlap\n"
+				+ "BEFORE INSERT ON rent\n"
+				+ "FOR EACH ROW EXECUTE PROCEDURE no_overlap();\n";
 		try {
 			st = conn.createStatement();
 			st.execute(sql);
