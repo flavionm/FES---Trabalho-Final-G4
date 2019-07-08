@@ -22,7 +22,7 @@ public class RentController {
 		conn = new ConnectionDB().getConection();
 	}
 	
-	public void start(Rent rent) {
+	public void start(Rent rent) throws SQLException {
 		String sql = "INSERT INTO rent (client_id, vehicle_id, start_date, end_date) VALUES (?, ?, ?, ?);";
 		try {
 			stmt = conn.prepareStatement(sql);
@@ -32,10 +32,9 @@ public class RentController {
 			stmt.setDate(4, java.sql.Date.valueOf(rent.getEnd_date()));
 			stmt.execute();
 			stmt.close();
-		}catch(Exception e) {
-			throw new RuntimeException("Erro no start de rent:" + e);
+		} catch(Exception e) {
+			throw e;
 		}
-	
 	}
 	
 	public void end(Rent rent) {

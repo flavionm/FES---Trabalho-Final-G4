@@ -170,7 +170,12 @@ public class ChooseVehicle extends JFrame {
 					}
 				}
 
-				rentController.start(rent);
+				try {
+					rentController.start(rent);
+				} catch (Exception e) {
+					System.out.println(e.getMessage());
+					JOptionPane.showMessageDialog(null, e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+				}
 
 				controller.rent(vehicles.get(iSelectedIndex));
 
