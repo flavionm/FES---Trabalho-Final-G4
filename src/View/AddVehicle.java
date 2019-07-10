@@ -51,11 +51,11 @@ public class AddVehicle extends JFrame {
 		txtMarca.setColumns(10);
 		
 		JLabel lblTipo = new JLabel("Tipo");
-		lblTipo.setBounds(292, 13, 24, 15);
+		lblTipo.setBounds(292, 13, 44, 15);
 		contentPane.add(lblTipo);
 		
 		txtTipo = new JTextField();
-		txtTipo.setBounds(323, 11, 89, 19);
+		txtTipo.setBounds(333, 11, 89, 19);
 		contentPane.add(txtTipo);
 		txtTipo.setColumns(10);
 		
@@ -69,11 +69,11 @@ public class AddVehicle extends JFrame {
 		txtModelo.setColumns(10);
 		
 		JLabel lblCor = new JLabel("Cor");
-		lblCor.setBounds(295, 38, 21, 15);
+		lblCor.setBounds(295, 38, 44, 15);
 		contentPane.add(lblCor);
 		
 		txtCor = new JTextField();
-		txtCor.setBounds(323, 36, 89, 19);
+		txtCor.setBounds(333, 36, 89, 19);
 		contentPane.add(txtCor);
 		txtCor.setColumns(10);
 		
@@ -87,11 +87,11 @@ public class AddVehicle extends JFrame {
 		txtDocumento.setColumns(10);
 		
 		JLabel lblPlaca = new JLabel("Placa");
-		lblPlaca.setBounds(284, 63, 32, 15);
+		lblPlaca.setBounds(284, 63, 44, 15);
 		contentPane.add(lblPlaca);
 		
 		txtPlaca = new JTextField();
-		txtPlaca.setBounds(323, 61, 89, 19);
+		txtPlaca.setBounds(333, 61, 89, 19);
 		contentPane.add(txtPlaca);
 		txtPlaca.setColumns(10);
 		
